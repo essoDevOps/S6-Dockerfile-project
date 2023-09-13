@@ -3,7 +3,7 @@
 ```
 BEFORE YOU START WORKING ON THIS 
 
-a- Make sure you have access to the following git repository if not request access Here:  https://link-url-here.org](https://docs.google.com/spreadsheets/d/1zpubMjtNEx2Nx9hNbmoMRMzpXfhInWIWBSJoQU-njwI/edit?usp=sharing
+a- Make sure you have access to the following git repository if not request access Here:  https://docs.google.com/spreadsheets/d/1zpubMjtNEx2Nx9hNbmoMRMzpXfhInWIWBSJoQU-njwI/edit?usp=sharing
 b- Create your own branch from the de develop with you prefer_name 
 c- There is an empty Dockefile inside the directory all your work should be done there 
 d- Once you are done with your work create a MR and assign it to 2 of your colleagues
