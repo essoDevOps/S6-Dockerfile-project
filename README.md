@@ -1,6 +1,18 @@
 ## S6 DOCKERFILE PROJECT DUE NEXT CLASS
 
 ```
+BEFORE YOU START WORKING ON THIS 
+
+a- make sure you have access to the following git repository if not request access 
+b- create your own branch from the de develop with you prefer name 
+c- there is an empty Dockefile inside the directory all your work should be done there 
+d- once you are done with your work create a MR and assign it to 2 of your colleagues
+```
+
+
+
+
+```
 Teams in order to remain consistant in how we deploy application at Devops easylearning I did some researches yesterday and to mimic what others companies are 
 doing out there,  to easy the  hassle and stress  of application deployment, we can launch a master deployment container that contain all required packages pertinent to the 
 deployment of all our application. 
