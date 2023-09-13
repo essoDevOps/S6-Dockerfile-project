@@ -1,8 +1,6 @@
 ## S6 DOCKERFILE PROJECT DUE NEXT CLASS
 
 ```
-
-
 Teams in order to remain consistant in how we deploy application at Devops easylearning I did some researches yesterday and to mimic what others companies are 
 doing out there,  to easy the  hassle and stress  of application deployment, we can launch a master deployment container that contain all required packages pertinent to the 
 deployment of all our application. 
