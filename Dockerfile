@@ -3,16 +3,13 @@ FROM ubuntu:$TAG
 WORKDIR /BUILDER
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update -y && apt install -y  ansible \
-   curl \
+   curl  wget\
    git \
    gnupg \
    jq \
-   # linux-headers \
    openssh-client \
    postgresql-client \
    python3 \
-   # kubectl \
-   # kubens \
    nodejs \
    npm  \                       
    vim \
@@ -20,14 +17,11 @@ RUN apt update -y && apt install -y  ansible \
    pip \
    net-tools \
    iputils-ping \
-   # terraform  \
    awscli \
    default-jre \
    default-jdk \
    maven \
-   # helm \
    ufw \
-   git \
    golang   
 
 RUN apt-get update && \
@@ -44,23 +38,21 @@ RUN  install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl &&  \
  
 RUN apt-get update  && \
       git clone https://github.com/ahmetb/kubectx /usr/local/kubectx && \
-      ln -s /usr/local/kubectx/kubectx /usr/local/bin/kubectx \
+      ln -s /usr/local/kubectx/kubectx /usr/local/bin/kubectx  && \
       ln -s /usr/local/kubectx/kubens /usr/local/bin/kubens
 
 
-RUN apt-get update &&  apt-get install -y gnupg software-properties-common
-RUN wget -O- https://apt.releases.hashicorp.com/gpg | \
-      gpg --dearmor | \
-       tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
-RUN gpg --no-default-keyring \
-      --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
-       --fingerprint
+RUN apt-get update &&  apt-get install -y gnupg software-properties-common 
+RUN wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+RUN gpg --no-default-keyring  --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg  --fingerprint
 
 
 RUN echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
           https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
          tee /etc/apt/sources.list.d/hashicorp.list
-RUN apt update && apt-get -y install terraform
+RUN apt update &&  apt install  -y terraform
+
+
 
 RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 && \  
     chmod 700 get_helm.sh && \
@@ -69,13 +61,12 @@ RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/s
 ARG APP_NAME   
 ARG ENV       
 ENV TEAM=Devops 
-USER 0 
-RUN mkdir -p /root/REPOS/GIT FRONTEND 
+USER 0  
+RUN mkdir -p /root/REPOS/GIT FRONTEND    &&  useradd -m builder 
 RUN git clone https://github.com/devopseasylearning/KFC-app.git && \
     git clone  https://github.com/devopseasylearning/awesome-compose.git  && \ 
     git clone  https://github.com/devopseasylearning/production-deployment.git
 EXPOSE 80-3029 3031-4877  4597-6000
 COPY  K8S backend .
 COPY frontend  FRONTEND/
-RUN useradd -m builder 
 USER builder 
